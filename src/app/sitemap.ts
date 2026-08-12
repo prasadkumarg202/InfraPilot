@@ -1,6 +1,8 @@
 import type { MetadataRoute } from 'next';
 import { site } from '@/content/site.config';
 
+export const dynamic = 'force-static';
+
 /**
  * Sitemap. Priorities reflect commercial intent rather than depth: the pages a
  * buyer reaches before contacting sales rank above the ones they read after.

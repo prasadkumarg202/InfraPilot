@@ -5,5 +5,4 @@ export const meta: PageMeta = {
   description:
     'Watch six real production infrastructure scenarios run live: self-healing, topology-aware patch orchestration, SQL Server migration, unattended builds, agentless discovery, and CIS/PCI compliance.',
   path: '/demos',
-  type: 'website',
 };

@@ -28,6 +28,7 @@ export type IconName =
   | 'checkCircle'
   | 'chevronDown'
   | 'chevronRight'
+  | 'circle'
   | 'clock'
   | 'cloud'
   | 'code'
@@ -69,6 +70,7 @@ export type IconName =
   | 'settings'
   | 'shield'
   | 'shieldCheck'
+  | 'sliders'
   | 'sparkles'
   | 'stack'
   | 'sun'
@@ -152,6 +154,7 @@ const PATHS: Record<IconName, React.ReactNode> = {
   ),
   chevronDown: <path d="m5.8 9 6.2 6.2L18.2 9" />,
   chevronRight: <path d="m9.4 5.8 6.2 6.2-6.2 6.2" />,
+  circle: <circle cx="12" cy="12" r="8.6" />,
   clock: (
     <>
       <circle cx="12" cy="12" r="8.6" />
@@ -349,6 +352,7 @@ const PATHS: Record<IconName, React.ReactNode> = {
       <path d="m8.8 11.8 2.4 2.4 4.4-4.6" />
     </>
   ),
+  sliders: <path d="M4 21v-7m0-4V3m8 18v-9m0-4V3m8 18v-5m0-4V3M1 14h6m2-6h6m2 8h6" />,
   sparkles: (
     <>
       <path d="M11 3.4 12.7 8l4.6 1.7-4.6 1.7L11 16l-1.7-4.6L4.7 9.7 9.3 8Z" />
