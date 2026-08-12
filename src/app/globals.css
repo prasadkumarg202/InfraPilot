@@ -1,0 +1,33 @@
+/**
+ * Global stylesheet entry point.
+ *
+ * Order is deliberate and load-bearing: tokens define the variables everything
+ * else consumes, base resets the document, layout provides the structural
+ * primitives, and the remaining layers add components in increasing
+ * specificity. Nothing below tokens.css declares a raw colour or size.
+ *
+ * Tailwind's utility layer is appended last so a utility can always win over a
+ * component style, which is the only reason to reach for one.
+ */
+
+@import '../styles/tokens.css';
+@import '../styles/base.css';
+@import '../styles/layout.css';
+@import '../styles/components.css';
+@import '../styles/chrome.css';
+@import '../styles/visualizations.css';
+@import '../styles/marketing.css';
+@import '../styles/sections.css';
+@import '../styles/pages.css';
+@import '../styles/content.css';
+
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * Fine-grain noise plate. Generated rather than shipped as a binary so there is
+ * no extra request and no asset to keep in sync with the palette.
+ */
+:root {
+  --noise-texture: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}

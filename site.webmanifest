@@ -1,0 +1,16 @@
+{
+  "name": "Ironstack — Autonomous Infrastructure Operations",
+  "short_name": "Ironstack",
+  "description": "Ironstack automates the full infrastructure lifecycle — discovery, provisioning, patching, upgrades, migrations, compliance and incident response — across databases, operating systems, middleware, cloud and Kubernetes.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#06080c",
+  "theme_color": "#06080c",
+  "icons": [
+    {
+      "src": "/brand/logo-mark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

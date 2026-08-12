@@ -1,0 +1,793 @@
+/* ============================================================================
+   VISUALISATIONS — topology, gauges, charts, timelines, console
+   ========================================================================= */
+
+/* The topology run-state palette. These are aliases, not new colours — the
+   graph needs its own vocabulary ("in flight", "risk") but every value
+   resolves to a semantic token so both themes follow automatically.
+
+   In flight is the brand accent on purpose. It is the state the platform is
+   actively driving, so it should be the colour the product is named for, and
+   it separates cleanly from complete (green) and target (blue). Risk borrows
+   the gold rather than `--warning`: gold and vermillion are the two brand
+   values and read as a pair, whereas warning-orange sits close enough to
+   vermillion to be ambiguous at the 7px a topology node gives you. */
+:root,
+[data-theme='dark'] {
+  --topo-edge: rgba(167, 180, 203, 0.35);
+  --topo-idle: #64748b;
+  --topo-target: #38bdf8;
+  --topo-inflight: #ff4d6d;
+  --topo-complete: #10b981;
+  --topo-risk: #fbbf24;
+}
+
+[data-theme='light'] {
+  --topo-edge: var(--border-strong);
+  --topo-idle: var(--text-tertiary);
+  --topo-target: var(--info);
+  --topo-inflight: var(--accent);
+  --topo-complete: var(--success);
+  --topo-risk: var(--warning);
+}
+
+/* ============================================================== TOPOLOGY */
+
+.topo {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.topo__edge {
+  fill: none;
+  stroke-width: 1.4;
+}
+
+/* Travelling pulse. A short dash chases the full path length; the path is
+   normalised with pathLength so the same timing works at any scale. */
+.topo__pulse {
+  fill: none;
+  stroke: var(--topo-inflight);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 26 460;
+  stroke-dashoffset: 486;
+  opacity: 0.9;
+  animation: topo-pulse 3.4s linear infinite;
+  filter: drop-shadow(0 0 4px var(--topo-inflight));
+}
+
+@keyframes topo-pulse {
+  0% {
+    stroke-dashoffset: 486;
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.95;
+  }
+  70% {
+    opacity: 0.95;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+.topo__node-bg {
+  fill: var(--bg-surface);
+  stroke: none;
+}
+.theatre .topo__node-bg {
+  fill: #060b13;
+}
+
+.topo__node-ring {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  opacity: 0.75;
+}
+
+.topo__glyph path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.9;
+}
+
+.topo__node.is-healthy .topo__node-ring {
+  opacity: 0.4;
+}
+.topo__node.is-healthy .topo__glyph path {
+  opacity: 0.55;
+}
+
+.topo__halo {
+  animation: topo-halo 2.8s var(--ease-in-out) infinite;
+}
+
+/* On a white canvas the halo reads as a smudge rather than a glow, so it is
+   dialled back to a hint. */
+[data-theme='light'] .topo__halo {
+  opacity: 0.35;
+}
+[data-theme='light'] .topo__pulse {
+  filter: none;
+}
+
+@keyframes topo-halo {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(0.86);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+/* Rotating arc on nodes currently executing. */
+.topo__spinner {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 22 90;
+  transform-origin: center;
+  animation: topo-spin 1.7s linear infinite;
+}
+
+@keyframes topo-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.topo__label-main {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  fill: var(--text-secondary);
+  letter-spacing: -0.01em;
+}
+.theatre .topo__label-main {
+  fill: #cbd5e1;
+}
+.theatre .topo__label-sub {
+  fill: #64748b;
+}
+
+.topo__label-sub {
+  font-family: var(--font-sans);
+  font-size: 9.5px;
+  fill: var(--text-quaternary);
+}
+
+/* ================================================================= GAUGE */
+
+.gauge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--success);
+}
+
+.gauge--low {
+  color: var(--success);
+}
+.gauge--moderate {
+  color: var(--info);
+}
+.gauge--elevated {
+  color: var(--warning);
+}
+.gauge--high {
+  color: var(--danger);
+}
+
+.gauge__track {
+  stroke: var(--text-quaternary);
+  opacity: 0.42;
+}
+
+.gauge__tick {
+  stroke: var(--border-strong);
+  stroke-width: 1;
+  opacity: 0.9;
+}
+
+.gauge__fill {
+  stroke: currentColor;
+  /* Draw-on animation: the arc sweeps up from zero on first paint. */
+  stroke-dasharray: 1000;
+  animation: gauge-draw 1.5s var(--ease-flow) both;
+}
+
+@keyframes gauge-draw {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.gauge__readout {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  pointer-events: none;
+}
+
+.gauge__value {
+  font-size: 1.5rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.gauge__label {
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--text-quaternary);
+}
+
+/* =============================================================== CONSOLE */
+
+.console {
+  position: relative;
+  perspective: 2000px;
+}
+
+.console__frame {
+  position: relative;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(24px) saturate(170%);
+  -webkit-backdrop-filter: blur(24px) saturate(170%);
+  box-shadow:
+    var(--highlight-top),
+    0 2px 8px rgba(0, 0, 0, 0.4),
+    0 30px 80px -24px rgba(0, 0, 0, 0.75),
+    0 0 0 1px rgba(22, 217, 189, 0.06);
+}
+
+.console__reflection {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: -14%;
+  height: 26%;
+  background: radial-gradient(60% 100% at 50% 0%, rgba(22, 217, 189, 0.16), transparent 70%);
+  filter: blur(36px);
+  z-index: -1;
+}
+
+/* ------------------------------------------------------------ Title bar */
+
+.console__titlebar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border-hairline);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent);
+}
+
+.console__dots {
+  display: flex;
+  gap: 6px;
+  flex: none;
+}
+
+.console__dots span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--border-strong);
+}
+
+.console__dots span:first-child {
+  background: rgba(255, 90, 95, 0.55);
+}
+.console__dots span:nth-child(2) {
+  background: rgba(255, 176, 32, 0.55);
+}
+.console__dots span:last-child {
+  background: rgba(47, 212, 127, 0.55);
+}
+
+.console__crumbs {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  color: var(--text-quaternary);
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.console__crumbs strong {
+  color: var(--text-secondary);
+  font-weight: var(--weight-medium);
+}
+
+.console__titlebar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-left: auto;
+  flex: none;
+}
+
+.console__clock {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  color: var(--text-quaternary);
+}
+
+/* ----------------------------------------------------------------- Body */
+
+.console__body {
+  display: grid;
+  grid-template-columns: 3rem 13.5rem minmax(0, 1fr) 15.5rem;
+  min-height: 30rem;
+}
+
+.console__rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-3) 0;
+  border-right: 1px solid var(--border-hairline);
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.console__rail-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-sm);
+  color: var(--text-quaternary);
+}
+
+.console__rail-item.is-active {
+  color: var(--accent-text);
+  background: var(--accent-muted);
+}
+
+.console__panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.console__panel--tree {
+  border-right: 1px solid var(--border-hairline);
+}
+
+.console__panel--run {
+  border-left: 1px solid var(--border-hairline);
+}
+
+.console__panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border-hairline);
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--text-quaternary);
+  white-space: nowrap;
+}
+
+.console__count {
+  font-family: var(--font-mono);
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: var(--weight-regular);
+  color: var(--text-tertiary);
+}
+
+/* Estate tree */
+
+.console__tree {
+  padding: var(--space-2);
+  overflow: hidden;
+}
+
+.console__tree-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+.console__tree-row.is-active {
+  color: var(--text-primary);
+  background: var(--bg-raised);
+}
+
+.console__tree-row svg {
+  color: var(--text-quaternary);
+  flex: none;
+}
+
+.console__tree-row.is-active svg {
+  color: var(--accent-text);
+}
+
+.console__tree-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.console__tree-count {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-quaternary);
+}
+
+.console__subtree {
+  padding-left: var(--space-4);
+  margin-left: var(--space-3);
+  border-left: 1px solid var(--border-hairline);
+}
+
+.console__tree-row--child {
+  padding-block: 4px;
+  font-size: 11px;
+}
+
+.console__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex: none;
+  background: var(--text-quaternary);
+}
+.console__dot.is-ok {
+  background: var(--success);
+}
+.console__dot.is-run {
+  background: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-muted);
+}
+.console__dot.is-warn {
+  background: var(--warning);
+}
+
+/* Main column */
+
+.console__main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.console__panel--graph {
+  flex: 1;
+  min-height: 0;
+}
+
+.console__graph {
+  flex: 1;
+  padding: var(--space-3) var(--space-2) 0;
+  display: flex;
+  align-items: center;
+}
+
+.console__legend {
+  display: flex;
+  gap: var(--space-3);
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: var(--weight-regular);
+  font-size: 10px;
+}
+
+.console__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-quaternary);
+}
+
+.console__legend-item i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+.console__legend-item i.is-complete {
+  background: var(--topo-complete);
+}
+.console__legend-item i.is-inflight {
+  background: var(--topo-inflight);
+}
+.console__legend-item i.is-target {
+  background: var(--topo-target);
+}
+.console__legend-item i.is-risk {
+  background: var(--topo-risk);
+}
+
+/* Execution waves */
+
+.console__panel--timeline {
+  border-top: 1px solid var(--border-hairline);
+}
+
+.console__lanes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+}
+
+.console__lane {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.console__lane-label {
+  font-size: 10.5px;
+  color: var(--text-quaternary);
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+
+.console__lane-track {
+  display: flex;
+  height: 8px;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  background: var(--bg-inset);
+  border: 1px solid var(--border-hairline);
+}
+
+.console__lane-track i {
+  height: 100%;
+  display: block;
+}
+
+.console__lane-track i.is-done {
+  background: linear-gradient(90deg, var(--success-600), var(--success-400));
+}
+.console__lane-track i.is-run {
+  background: linear-gradient(90deg, var(--ion-600), var(--ion-300));
+  animation: lane-shimmer 2s var(--ease-in-out) infinite;
+}
+.console__lane-track i.is-warn {
+  background: linear-gradient(90deg, var(--warning-500), var(--warning-300));
+}
+.console__lane-track i.is-idle {
+  background: transparent;
+}
+
+@keyframes lane-shimmer {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.45);
+  }
+}
+
+/* Run panel */
+
+.console__risk {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.console__risk-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.console__risk-title {
+  font-size: 10px;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--text-quaternary);
+}
+
+.console__risk-value {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--success-text);
+}
+
+.console__risk-note {
+  font-size: 10px;
+  color: var(--text-quaternary);
+  line-height: 1.4;
+}
+
+.console__steps {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.console__steps li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 16px 1fr auto;
+  align-items: center;
+  gap: var(--space-2);
+  padding-block: 5px;
+  font-size: 11px;
+  color: var(--text-quaternary);
+}
+
+/* Connector line between step markers. */
+.console__steps li:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 60%;
+  width: 1px;
+  height: 100%;
+  background: var(--border-hairline);
+}
+
+.console__step-marker {
+  position: relative;
+  z-index: 1;
+  width: 11px;
+  height: 11px;
+  margin-left: 2px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-strong);
+  background: var(--bg-surface);
+}
+
+.console__steps li.is-done .console__step-marker {
+  border-color: var(--success);
+  background: var(--success);
+  box-shadow: 0 0 0 3px var(--success-muted);
+}
+
+.console__steps li.is-done .console__step-label {
+  color: var(--text-tertiary);
+}
+
+.console__steps li.is-running .console__step-marker {
+  border-color: var(--accent);
+  background: var(--accent);
+  animation: step-pulse 1.6s var(--ease-in-out) infinite;
+}
+
+.console__steps li.is-running .console__step-label {
+  color: var(--text-primary);
+  font-weight: var(--weight-medium);
+}
+
+@keyframes step-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 var(--accent-muted);
+  }
+  50% {
+    box-shadow: 0 0 0 5px var(--accent-muted);
+  }
+}
+
+.console__step-time {
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+
+.console__feed {
+  flex: 1;
+  padding: var(--space-3) var(--space-4) var(--space-4);
+  overflow: hidden;
+}
+
+.console__feed-title {
+  font-size: 10px;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--text-quaternary);
+  margin-bottom: var(--space-3);
+}
+
+.console__feed ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.console__feed li {
+  display: flex;
+  gap: var(--space-2);
+  font-size: 10.5px;
+  line-height: 1.45;
+  color: var(--text-quaternary);
+  padding-left: var(--space-2);
+  border-left: 2px solid var(--border-hairline);
+}
+
+.console__feed li.is-ok {
+  border-left-color: var(--success);
+}
+.console__feed li.is-warn {
+  border-left-color: var(--warning);
+}
+.console__feed li.is-ai {
+  border-left-color: var(--accent-2);
+}
+.console__feed li.is-ai .console__feed-text {
+  color: var(--accent-2-text);
+}
+
+.console__feed-time {
+  font-family: var(--font-mono);
+  flex: none;
+  opacity: 0.75;
+}
+
+.console__feed-text {
+  min-width: 0;
+}
+
+/* Responsive collapse — the console sheds side panels before it shrinks
+   the topology, because the graph is the part that carries the message. */
+@media (max-width: 1180px) {
+  .console__body {
+    grid-template-columns: 3rem 12rem minmax(0, 1fr);
+  }
+  .console__panel--run {
+    display: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .console__body {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+  }
+  .console__rail,
+  .console__panel--tree {
+    display: none;
+  }
+  .console__graph {
+    padding: var(--space-2);
+  }
+}

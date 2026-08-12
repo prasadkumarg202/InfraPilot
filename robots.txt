@@ -1,0 +1,11 @@
+# Ironstack Technologies, Inc.
+User-agent: *
+Allow: /
+Disallow: /api/internal/
+Disallow: /*?utm_
+
+User-agent: GPTBot
+Allow: /
+
+Sitemap: https://www.ironstack.io/sitemap.xml
+Host: ironstack.io
