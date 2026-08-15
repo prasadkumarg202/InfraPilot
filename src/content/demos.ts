@@ -26,6 +26,12 @@ export interface DemoPhase {
   logs: Array<{ text: string; tone: 'info' | 'ok' | 'warn' | 'ai' | 'danger' }>;
 }
 
+export interface DemoVideoLink {
+  label: string;
+  url: string;
+  type: 'sqlserver' | 'oracle' | 'postgres' | 'general';
+}
+
 export interface DemoScenario {
   id: string;
   name: string;
@@ -37,8 +43,8 @@ export interface DemoScenario {
   phases: DemoPhase[];
   metrics: Array<{ label: string; from: string; to: string }>;
   outcome: string;
-  /** Matching demo film, if one exists. */
-  film?: string;
+  /** Videos associated with this scenario */
+  videos?: DemoVideoLink[];
 }
 
 export const demoScenarios: DemoScenario[] = [
@@ -51,7 +57,11 @@ export const demoScenarios: DemoScenario[] = [
       'A SQL Server service stops on a production host. ServiceNow raises the incident, runbook RB-1108 restarts the service and verifies every database came back, and the incident closes itself — with no engineer paged.',
     visual: 'topology',
     scope: 'INC0048122 · RB-1108 · policy-bounded, unattended',
-    film: 'Demo Video — Self-Healing',
+    videos: [
+      { label: 'SQL Server', url: '/videos/Demo%20Video%20-%20Self-Healing.dc.html', type: 'sqlserver' },
+      { label: 'Oracle', url: '/videos/Demo%20Video%20-%20Oracle%20Auto-Healing.dc.html', type: 'oracle' },
+      { label: 'PostgreSQL', url: '/videos/Demo%20Video%20-%20PG%20Auto-Healing.dc.html', type: 'postgres' }
+    ],
     outcome:
       'Service restored in 71 seconds without human involvement. All 14 databases verified online, the incident validated and closed automatically, and the full evidence chain attached to the record.',
     phases: [
@@ -113,7 +123,11 @@ export const demoScenarios: DemoScenario[] = [
       'A change request drives the whole run. Servers come from the ServiceNow CMDB, the platform detects each one’s topology — standalone, Always On availability group, or failover cluster — and sequences the waves so quorum is never at risk.',
     visual: 'waves',
     scope: 'CHG0042917 · 2,104 instances · 4 regions · 6-hour window',
-    film: 'Demo Video — Patch Orchestration',
+    videos: [
+      { label: 'SQL Server', url: '/videos/Demo%20Video%20-%20Patch%20Orchestration.dc.html', type: 'sqlserver' },
+      { label: 'Oracle', url: '/videos/Demo%20Video%20-%20Oracle%20Patching.dc.html', type: 'oracle' },
+      { label: 'PostgreSQL', url: '/videos/Demo%20Video%20-%20PG%20Patching.dc.html', type: 'postgres' }
+    ],
     outcome:
       'Completed in 4h 12m with zero unplanned downtime. Two nodes failed a post-patch health gate, rolled back automatically, and were re-run in the trailing wave. The change request closed itself.',
     phases: [
@@ -172,14 +186,18 @@ export const demoScenarios: DemoScenario[] = [
   },
   {
     id: 'migration',
-    name: 'SQL migration',
+    name: 'Database migration',
     icon: 'route',
-    tagline: 'SQL Server 2016 → 2022 on Always On',
+    tagline: 'Platform upgrade and cloud migration',
     description:
       'A version upgrade delivered as a rehearsed cutover. Full backups, restores across every replica WITH NORECOVERY, a tail-log backup, then the availability group rebuilt with synchronous replicas locally and an asynchronous replica in the remote region.',
     visual: 'migration',
     scope: 'SQLAG-11 · 3 replicas · US-East sync, US-West async',
-    film: 'Demo Video — SQL Migration',
+    videos: [
+      { label: 'SQL Server', url: '/videos/Demo%20Video%20-%20SQL%20Migration.dc.html', type: 'sqlserver' },
+      { label: 'Oracle', url: '/videos/Demo%20Video%20-%20Oracle%20Upgrade.dc.html', type: 'oracle' },
+      { label: 'PostgreSQL', url: '/videos/Demo%20Video%20-%20PG%20Upgrade.dc.html', type: 'postgres' }
+    ],
     outcome:
       'Cutover executed in 38 minutes against a rehearsed plan. Compatibility level raised, CHECKDB clean, maintenance jobs re-created, and the change request closed. The rollback path was validated but not needed.',
     phases: [
@@ -242,7 +260,11 @@ export const demoScenarios: DemoScenario[] = [
       'A service catalogue request becomes a running, standards-compliant SQL Server. The VM is created, drives are formatted and labelled to the storage standard, the install runs unattended, and the instance is tuned and health-checked before handover.',
     visual: 'build',
     scope: 'RITM0067342 · WS2022 · SQL 2022 + CU12 · 8 vCPU / 64 GB',
-    film: 'Demo Video — SQL Server Build',
+    videos: [
+      { label: 'SQL Server', url: '/videos/Demo%20Video%20-%20SQL%20Server%20Build.dc.html', type: 'sqlserver' },
+      { label: 'Oracle', url: '/videos/Demo%20Video%20-%20Oracle%20Build.dc.html', type: 'oracle' },
+      { label: 'PostgreSQL', url: '/videos/Demo%20Video%20-%20PG%20Build.dc.html', type: 'postgres' }
+    ],
     outcome:
       'Delivered in 68 minutes from approved request to health-checked instance, against a manual baseline of three to five working days. Every setting traceable to the standard that specified it.',
     phases: [
@@ -305,7 +327,9 @@ export const demoScenarios: DemoScenario[] = [
       'No agents, no rollout project. The platform scans with vault-brokered credentials, classifies what it finds, resolves the dependency graph from observed traffic and configuration, and reconciles the result into the CMDB.',
     visual: 'evidence',
     scope: '4 subnets · vault credentials · agentless',
-    film: 'Demo Video — Infrastructure Discovery',
+    videos: [
+      { label: 'Demo Video', url: '/videos/Demo%20Video%20-%20Infrastructure%20Discovery.dc.html', type: 'general' }
+    ],
     outcome:
       '1,240 configuration items discovered and classified, 3,861 dependency edges resolved, and the CMDB reconciled — including 96 assets that were running in production and recorded nowhere.',
     phases: [
@@ -366,7 +390,9 @@ export const demoScenarios: DemoScenario[] = [
       'Controls tested continuously against every in-scope system. Findings are ranked, the remediable ones become governed change, the rest are filed as exceptions with owners and dates, and signed evidence goes to GRC.',
     visual: 'compliance',
     scope: 'CIS v8 · PCI DSS 4.0 · company baseline',
-    film: 'Demo Video — Compliance',
+    videos: [
+      { label: 'Demo Video', url: '/videos/Demo%20Video%20-%20Compliance.dc.html', type: 'general' }
+    ],
     outcome:
       'Thirty-seven findings ranked and cleared or accepted. Signed evidence delivered to GRC with per-check timestamps, and a per-platform posture dashboard: SQL Server 99.1%, Oracle 97.6%, Middleware 96.2%.',
     phases: [

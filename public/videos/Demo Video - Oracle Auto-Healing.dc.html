@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/2daynews-design-system-0b44f303-1c57-4e7b-88d3-194a2a3e2cbd/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/2daynews-design-system-0b44f303-1c57-4e7b-88d3-194a2a3e2cbd/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/2daynews-design-system-0b44f303-1c57-4e7b-88d3-194a2a3e2cbd/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/2daynews-design-system-0b44f303-1c57-4e7b-88d3-194a2a3e2cbd/styles.css">
+  <script src="_ds/2daynews-design-system-0b44f303-1c57-4e7b-88d3-194a2a3e2cbd/_ds_bundle.js"></script>
+  <script>window.OM_SCENES = '[{"name":"Opening","dur":4},{"name":"Service stops","dur":6},{"name":"Incident created","dur":6},{"name":"Runbook runs","dur":8},{"name":"Validate & close","dur":6},{"name":"Outro","dur":6}]';</script>
+  <script>window.OM_PLAYBACK = '{"mode":"loop"}';</script>
+  <script>window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "motionEditor": true
+  }/*EDITMODE-END*/;</script>
+  <style>
+    body{margin:0;background:#0C1424;color:#F4F6FA;font-family:'Noto Sans',system-ui,sans-serif}
+    a{color:#F17D77;text-decoration:none}
+    a:hover{color:#FCDCDA}
+  </style>
+  <script src="export-button.js"></script>
+</helmet>
+<div data-screen-label="Oracle auto-healing demo video" style="min-height:100vh; background:#0C1424; display:flex; flex-direction:column">
+  <div style="display:flex; align-items:center; justify-content:space-between; padding:14px 28px; border-bottom:1px solid rgba(233,236,242,.08)">
+    <a href="INFRsre Home.dc.html" style="font-family:'Anek Latin',sans-serif; font-weight:600; font-size:14px">← INFRsre home</a>
+    <span style="font-family:'Anek Latin',sans-serif; font-weight:800; font-size:11px; letter-spacing:.1em; color:#8C97AC">DEMO FILM 14 · ORACLE AUTO-HEALING · 36S</span><export-video-button></export-video-button><a href="INFRsre Home.dc.html#films" title="Close demo" style="display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:8px; border:1px solid rgba(233,236,242,.15); color:#B4BCCB; font-size:16px; font-family:'Anek Latin',sans-serif; font-weight:700; margin-left:16px" onmouseover="this.style.background='rgba(233,236,242,.08)'" onmouseout="this.style.background='transparent'">✕</a>
+  </div>
+  <div style="flex:1; display:flex; align-items:center; justify-content:center; padding:24px">
+    <x-import component-from-global-scope="SelfHealVideo" from="./tweaks-panel.jsx ./animations-v2.jsx ./demo-ora-healing.jsx" hint-size="1280px,720px"></x-import>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

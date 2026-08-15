@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/2daynews-design-system-0b44f303-1c57-4e7b-88d3-194a2a3e2cbd/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/2daynews-design-system-0b44f303-1c57-4e7b-88d3-194a2a3e2cbd/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/2daynews-design-system-0b44f303-1c57-4e7b-88d3-194a2a3e2cbd/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/2daynews-design-system-0b44f303-1c57-4e7b-88d3-194a2a3e2cbd/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/2daynews-design-system-0b44f303-1c57-4e7b-88d3-194a2a3e2cbd/tokens/radii.css">
+  <link rel="stylesheet" href="_ds/2daynews-design-system-0b44f303-1c57-4e7b-88d3-194a2a3e2cbd/tokens/shadows.css">
+  <link rel="stylesheet" href="_ds/2daynews-design-system-0b44f303-1c57-4e7b-88d3-194a2a3e2cbd/tokens/motion.css">
+  <link rel="stylesheet" href="_ds/2daynews-design-system-0b44f303-1c57-4e7b-88d3-194a2a3e2cbd/styles.css">
+  <script src="_ds/2daynews-design-system-0b44f303-1c57-4e7b-88d3-194a2a3e2cbd/_ds_bundle.js"></script>
+  <style>
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--ink-950);color:var(--ink-50);font-family:var(--font-body)}
+    a{color:var(--red-300);text-decoration:none}
+    a:hover{color:var(--red-200)}
+  </style>
+</helmet>
+<div data-screen-label="Case studies" style="background:var(--ink-950); color:var(--ink-50); font-family:var(--font-body); min-height:100vh">
+
+  <nav style="position:sticky; top:0; z-index:50; display:flex; align-items:center; gap:32px; padding:0 40px; height:64px; background:rgba(12,20,36,.82); backdrop-filter:blur(14px); border-bottom:1px solid rgba(233,236,242,.08)">
+    <a href="INFRsre Home.dc.html" style="font-family:var(--font-display); font-weight:800; font-size:22px; letter-spacing:-0.01em; color:#fff">INFR<span style="color:var(--brand)">sre</span></a>
+    <div style="display:flex; gap:26px; font-family:var(--font-display); font-weight:600; font-size:14px; flex:1">
+      <a href="INFRsre Home.dc.html#platform" style="color:var(--ink-300)">Platform</a>
+      <a href="INFRsre Home.dc.html#films" style="color:var(--ink-300)">Demo films</a>
+      <span style="color:#fff">Case studies</span>
+      <a href="Security.dc.html" style="color:var(--ink-300)">Security</a>
+    </div>
+    <x-import component-from-global-scope="Ds2daynewsDesignSystem_0b44f3.Button" size="sm" hint-size="120px,32px">Book demo</x-import>
+  </nav>
+
+  <header style="max-width:900px; margin:0 auto; padding:80px 40px 40px; text-align:center">
+    <div style="font-family:var(--font-display); font-weight:800; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-500); margin-bottom:14px">Case studies</div>
+    <h1 style="margin:0 0 16px; font-family:var(--font-display); font-weight:800; font-size:46px; line-height:1.1; color:#fff; text-wrap:balance">Measured on real estates, not in demos</h1>
+    <p style="margin:0 auto; font-size:17px; line-height:1.6; color:var(--ink-300); max-width:56ch">Three regulated enterprises, three different problems — the same platform. Names shared under NDA; the numbers are theirs.</p>
+  </header>
+
+  <div style="max-width:1240px; margin:0 auto; padding:24px 40px 72px; display:flex; flex-direction:column; gap:24px">
+    <sc-for list="{{ cases }}" as="cs" hint-placeholder-count="3">
+      <article style="background:var(--ink-900); border:1px solid rgba(233,236,242,.09); border-radius:14px; padding:36px; display:grid; grid-template-columns:1.15fr .85fr; gap:40px">
+        <div>
+          <div style="display:flex; gap:10px; align-items:center; margin-bottom:14px">
+            <span style="font-family:var(--font-display); font-weight:800; font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:#fff; background:{{ cs.tagBg }}; padding:3px 10px; border-radius:999px">{{ cs.industry }}</span>
+            <span style="font-family:var(--font-mono); font-size:11.5px; color:var(--ink-500)">{{ cs.scale }}</span>
+          </div>
+          <h2 style="margin:0 0 12px; font-family:var(--font-display); font-weight:800; font-size:26px; line-height:1.2; color:#fff">{{ cs.headline }}</h2>
+          <div style="display:flex; flex-direction:column; gap:14px; margin-top:18px">
+            <div><div style="font-family:var(--font-display); font-weight:800; font-size:10px; letter-spacing:.08em; color:var(--red-300); margin-bottom:4px">CHALLENGE</div><p style="margin:0; font-size:14px; line-height:1.6; color:var(--ink-300)">{{ cs.challenge }}</p></div>
+            <div><div style="font-family:var(--font-display); font-weight:800; font-size:10px; letter-spacing:.08em; color:var(--gold-500); margin-bottom:4px">APPROACH</div><p style="margin:0; font-size:14px; line-height:1.6; color:var(--ink-300)">{{ cs.approach }}</p></div>
+            <div><div style="font-family:var(--font-display); font-weight:800; font-size:10px; letter-spacing:.08em; color:var(--success); margin-bottom:4px">RESULT</div><p style="margin:0; font-size:14px; line-height:1.6; color:var(--ink-300)">{{ cs.result }}</p></div>
+          </div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:14px">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
+            <sc-for list="{{ cs.metrics }}" as="m" hint-placeholder-count="4">
+              <div style="background:var(--ink-950); border:1px solid rgba(233,236,242,.09); border-radius:10px; padding:16px">
+                <div style="font-family:var(--font-mono); font-size:24px; color:{{ m.color }}">{{ m.value }}</div>
+                <div style="font-size:11.5px; color:var(--ink-500); margin-top:4px">{{ m.label }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="background:var(--ink-950); border:1px solid rgba(233,236,242,.09); border-radius:10px; padding:18px; flex:1">
+            <p style="margin:0 0 12px; font-size:14px; line-height:1.6; color:var(--ink-200); font-style:italic">"{{ cs.quote }}"</p>
+            <div style="font-family:var(--font-display); font-weight:700; font-size:12.5px; color:#fff">{{ cs.person }}</div>
+            <div style="font-size:11.5px; color:var(--ink-500)">{{ cs.role }}</div>
+          </div>
+        </div>
+      </article>
+    </sc-for>
+  </div>
+
+  <section style="background:linear-gradient(180deg, var(--ink-900), var(--ink-950)); border-top:1px solid rgba(233,236,242,.07)">
+    <div style="max-width:840px; margin:0 auto; padding:64px 40px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:18px">
+      <h2 style="margin:0; font-family:var(--font-display); font-weight:800; font-size:34px; color:#fff">Your estate could be the next case study</h2>
+      <div style="display:flex; gap:14px">
+        <x-import component-from-global-scope="Ds2daynewsDesignSystem_0b44f3.Button" size="lg" hint-size="150px,48px">Book demo</x-import>
+        <x-import component-from-global-scope="Ds2daynewsDesignSystem_0b44f3.Button" size="lg" variant="secondary" hint-size="220px,48px">Start proof of concept</x-import>
+      </div>
+    </div>
+  </section>
+
+  <footer style="border-top:1px solid rgba(233,236,242,.08); background:var(--ink-950)">
+    <div style="max-width:1240px; margin:0 auto; padding:32px 40px; display:flex; justify-content:space-between; align-items:center">
+      <span style="font-family:var(--font-display); font-weight:800; font-size:18px; color:#fff">INFR<span style="color:var(--brand)">sre</span></span>
+      <span style="font-size:12px; color:var(--ink-600)">© 2026 INFRsre, Inc. All rights reserved.</span>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      cases: [
+        {
+          industry: 'Banking', tagBg: 'var(--cat-politics)', scale: '18,000 servers · 4 regions',
+          headline: 'A Fortune 100 bank automated 92% of its patch windows',
+          challenge: '1,200+ SQL Server and Oracle instances patched by hand across four regions. Every wave took 40 DBAs a full weekend; one missed dependency in 2024 caused a 6-hour settlement outage.',
+          approach: 'Discovery built the dependency graph in week one. Patch orchestration ran shadow-mode for two cycles, then took over: topology-aware sequencing, canaries, auto-validation, armed rollback — CAB records filed automatically.',
+          result: 'Patch windows now run overnight with two engineers on standby instead of forty. Zero patch-related outages in 18 months. The dependency graph is now the bank\u2019s system of record for change impact.',
+          quote: 'We stopped writing patch plans. Our DBAs do engineering now, not maintenance windows.',
+          person: 'Rachel Koenig', role: 'VP Infrastructure, Fortune 100 bank',
+          metrics: [
+            { value: '92%', label: 'patch windows automated', color: 'var(--gold-500)' },
+            { value: '0', label: 'patch-related outages · 18 mo', color: 'var(--success)' },
+            { value: '40 → 2', label: 'engineers per wave', color: '#fff' },
+            { value: '$4.2M', label: 'annual cost avoided', color: 'var(--gold-500)' }
+          ]
+        },
+        {
+          industry: 'Healthcare', tagBg: 'var(--cat-health)', scale: '6,200 servers · 24/7 clinical',
+          headline: 'A hospital network cut MTTR from 41 minutes to 3.2',
+          challenge: 'Clinical systems can\u2019t wait for a pager. Night-shift incidents on database and middleware tiers averaged 41 minutes to resolve, and audit preparation consumed six weeks a year.',
+          approach: 'Self-healing runbooks were enabled service-by-service, policy-gated: service restarts, blocked-session clears and disk expansions run autonomously; anything touching clinical data still pages a human with full context attached.',
+          result: '8,400 incidents auto-resolved last quarter before a human saw them. Compliance scans run continuously against CIS and the internal baseline, so audit evidence is a download, not a project.',
+          quote: 'Our MTTR chart looks like a cliff. Audit loved that every action has a signed trail.',
+          person: 'Arun Devarajan', role: 'Head of SRE, US hospital network',
+          metrics: [
+            { value: '3.2m', label: 'MTTR, from 41 minutes', color: 'var(--success)' },
+            { value: '8,400', label: 'incidents auto-resolved / qtr', color: '#fff' },
+            { value: '99.1%', label: 'continuous compliance', color: 'var(--success)' },
+            { value: '6 wk → 2 d', label: 'audit preparation', color: 'var(--gold-500)' }
+          ]
+        },
+        {
+          industry: 'Telecom', tagBg: 'var(--cat-business)', scale: '11,000 servers · 3 data centers',
+          headline: 'A tier-1 telecom migrated 400 databases in 11 weeks',
+          challenge: 'An Oracle estate at end-of-support, a PostgreSQL mandate from the board, and a migration vendor quote of 14 months. Every previous migration attempt had caused unplanned downtime.',
+          approach: 'Migration factory profiled all 400 databases, generated wave plans, and rehearsed every cutover as a dry run first. Tail-log style cutovers kept downtime per database under five minutes, with automated validation and rollback armed.',
+          result: 'All 400 databases migrated in 11 weeks with zero unplanned downtime. Incident volume fell 71% year-over-year as self-healing took over the new platform\u2019s routine operations.',
+          quote: 'The rehearsal runs sold us. By cutover night, the platform had already done each migration twice.',
+          person: 'M\u00e1rcia Oliveira', role: 'Director of Platform Engineering, tier-1 telecom',
+          metrics: [
+            { value: '400', label: 'databases migrated', color: '#fff' },
+            { value: '11 wk', label: 'vs 14-month vendor quote', color: 'var(--gold-500)' },
+            { value: '0', label: 'unplanned downtime events', color: 'var(--success)' },
+            { value: '\u221271%', label: 'incident volume YoY', color: 'var(--success)' }
+          ]
+        }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

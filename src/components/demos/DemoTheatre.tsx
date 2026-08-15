@@ -163,11 +163,32 @@ export function DemoTheatre({ initial = 0 }: { initial?: number }) {
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <h3 className="theatre__title">{scenario.name}</h3>
-              {scenario.film && (
-                <span className="badge badge--accent" style={{ fontSize: '10px', textTransform: 'uppercase' }}>
-                  🎬 {scenario.film}
-                </span>
-              )}
+              {scenario.videos?.map((vid, idx) => {
+                let badgeColor = '#F17D77'; // default red
+                let badgeBg = 'rgba(241, 125, 119, 0.1)';
+                if (vid.type === 'oracle') { badgeColor = '#fb923c'; badgeBg = 'rgba(251, 146, 60, 0.1)'; }
+                if (vid.type === 'postgres') { badgeColor = '#60a5fa'; badgeBg = 'rgba(96, 165, 250, 0.1)'; }
+
+                return (
+                  <a 
+                    key={idx}
+                    href={vid.url} 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="badge" 
+                    style={{ 
+                      fontSize: '10px', 
+                      textTransform: 'uppercase', 
+                      textDecoration: 'none',
+                      color: badgeColor,
+                      backgroundColor: badgeBg,
+                      border: `1px solid ${badgeBg}`
+                    }}
+                  >
+                    🎬 {vid.label}
+                  </a>
+                );
+              })}
             </div>
             <p className="theatre__scope">{scenario.scope}</p>
           </div>

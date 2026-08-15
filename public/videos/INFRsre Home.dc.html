@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/2daynews-design-system-0b44f303-1c57-4e7b-88d3-194a2a3e2cbd/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/2daynews-design-system-0b44f303-1c57-4e7b-88d3-194a2a3e2cbd/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/2daynews-design-system-0b44f303-1c57-4e7b-88d3-194a2a3e2cbd/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/2daynews-design-system-0b44f303-1c57-4e7b-88d3-194a2a3e2cbd/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/2daynews-design-system-0b44f303-1c57-4e7b-88d3-194a2a3e2cbd/tokens/radii.css">
+  <link rel="stylesheet" href="_ds/2daynews-design-system-0b44f303-1c57-4e7b-88d3-194a2a3e2cbd/tokens/shadows.css">
+  <link rel="stylesheet" href="_ds/2daynews-design-system-0b44f303-1c57-4e7b-88d3-194a2a3e2cbd/tokens/motion.css">
+  <link rel="stylesheet" href="_ds/2daynews-design-system-0b44f303-1c57-4e7b-88d3-194a2a3e2cbd/styles.css">
+  <script src="_ds/2daynews-design-system-0b44f303-1c57-4e7b-88d3-194a2a3e2cbd/_ds_bundle.js"></script>
+  <style>
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--ink-950);color:var(--ink-50);font-family:var(--font-body)}
+    a{color:var(--red-300);text-decoration:none}
+    a:hover{color:var(--red-200)}
+    @keyframes inf-slidein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes inf-ping{0%{transform:scale(.7);opacity:.9}70%,100%{transform:scale(2.4);opacity:0}}
+    @keyframes inf-grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+    @keyframes inf-dash{to{stroke-dashoffset:-24}}
+  </style>
+</helmet>
+<div data-screen-label="INFRsre Home" style="background:var(--ink-950); color:var(--ink-50); font-family:var(--font-body); min-height:100vh">
+
+  <nav style="position:sticky; top:0; z-index:50; display:flex; align-items:center; gap:32px; padding:0 40px; height:64px; background:rgba(12,20,36,.82); backdrop-filter:blur(14px); border-bottom:1px solid rgba(233,236,242,.08)">
+    <a href="#top" style="font-family:var(--font-display); font-weight:800; font-size:22px; letter-spacing:-0.01em; color:#fff">INFR<span style="color:var(--brand)">sre</span></a>
+    <div style="display:flex; gap:26px; font-family:var(--font-display); font-weight:600; font-size:14px; flex:1">
+      <a href="#platform" style="color:var(--ink-300)">Platform</a>
+      <a href="#demos" style="color:var(--ink-300)">Product demos</a>
+      <a href="#coverage" style="color:var(--ink-300)">Coverage</a>
+      <a href="#integrations" style="color:var(--ink-300)">Integrations</a>
+      <a href="Case Studies.dc.html" style="color:var(--ink-300)">Case studies</a>
+      <a href="Security.dc.html" style="color:var(--ink-300)">Security</a>
+    </div>
+    <a href="#cta" style="color:var(--ink-300); font-family:var(--font-display); font-weight:600; font-size:14px">Contact sales</a>
+    <x-import component-from-global-scope="Ds2daynewsDesignSystem_0b44f3.Button" size="sm" hint-size="120px,32px">Book demo</x-import>
+  </nav>
+
+  <sc-if value="{{ showTicker }}" hint-placeholder-val="{{ true }}">
+    <x-import component-from-global-scope="Ds2daynewsDesignSystem_0b44f3.BreakingTicker" label="Live ops" items="{{ tickerItems }}" hint-size="100%,36px"></x-import>
+  </sc-if>
+
+  <header id="top" style="display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center; max-width:1240px; margin:0 auto; padding:88px 40px 72px">
+    <div style="display:flex; flex-direction:column; gap:24px">
+      <div style="display:flex; align-items:center; gap:10px">
+        <span style="font-family:var(--font-display); font-weight:800; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-500)">AI-powered enterprise infrastructure automation</span>
+      </div>
+      <h1 style="margin:0; font-family:var(--font-display); font-weight:800; font-size:56px; line-height:1.08; letter-spacing:-0.01em; color:#fff; text-wrap:balance">Autonomous infrastructure operations for modern enterprises</h1>
+      <p style="margin:0; font-size:17px; line-height:1.6; color:var(--ink-300); max-width:54ch; text-wrap:pretty">Automate discovery, provisioning, patching, upgrades, migrations, compliance, incident response and self-healing across databases, operating systems, middleware, cloud and Kubernetes — from one intelligent platform.</p>
+      <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap">
+        <x-import component-from-global-scope="Ds2daynewsDesignSystem_0b44f3.Button" size="lg" hint-size="150px,48px">Book demo</x-import>
+        <x-import component-from-global-scope="Ds2daynewsDesignSystem_0b44f3.Button" size="lg" variant="secondary" hint-size="170px,48px">Watch live demo</x-import>
+        <a href="#cta" style="font-family:var(--font-display); font-weight:700; font-size:15px">Start proof of concept →</a>
+      </div>
+      <div style="display:flex; gap:36px; padding-top:18px; border-top:1px solid rgba(233,236,242,.1)">
+        <div><div style="font-family:var(--font-mono); font-size:26px; font-weight:600; color:#fff">40,000+</div><div style="font-size:12px; color:var(--ink-400)">nodes under management</div></div>
+        <div><div style="font-family:var(--font-mono); font-size:26px; font-weight:600; color:#fff">87%</div><div style="font-size:12px; color:var(--ink-400)">of routine ops automated</div></div>
+        <div><div style="font-family:var(--font-mono); font-size:26px; font-weight:600; color:var(--success)">−64%</div><div style="font-size:12px; color:var(--ink-400)">mean time to recovery</div></div>
+        <div><div style="font-family:var(--font-mono); font-size:26px; font-weight:600; color:#fff">99.99%</div><div style="font-size:12px; color:var(--ink-400)">platform availability</div></div>
+      </div>
+    </div>
+    <div style="background:var(--ink-900); border:1px solid rgba(233,236,242,.1); border-radius:12px; overflow:hidden; box-shadow:0 24px 60px rgba(0,0,0,.4)">
+      <div style="display:flex; align-items:center; gap:10px; padding:12px 16px; border-bottom:1px solid rgba(233,236,242,.08); background:var(--ink-800)">
+        <span style="width:9px; height:9px; border-radius:50%; background:#F17D77"></span>
+        <span style="width:9px; height:9px; border-radius:50%; background:var(--gold-500)"></span>
+        <span style="width:9px; height:9px; border-radius:50%; background:var(--success)"></span>
+        <span style="font-family:var(--font-mono); font-size:12px; color:var(--ink-400); flex:1; text-align:center">ops.infrsre.io — autonomous operations console</span>
+        <x-import component-from-global-scope="Ds2daynewsDesignSystem_0b44f3.Badge" tone="live" live="{{ true }}" hint-size="52px,18px">Live</x-import>
+      </div>
+      <div style="padding:14px 16px; display:flex; flex-direction:column; gap:8px; min-height:290px">
+        <sc-for list="{{ feed }}" as="ev" hint-placeholder-count="5">
+          <div style="display:flex; gap:12px; align-items:flex-start; padding:9px 12px; border-radius:8px; background:rgba(233,236,242,.04); border:1px solid rgba(233,236,242,.06); animation:inf-slidein .32s cubic-bezier(.2,0,0,1)">
+            <span style="font-family:var(--font-mono); font-size:11px; color:var(--ink-500); padding-top:2px; flex:0 0 52px">{{ ev.t }}</span>
+            <span style="width:8px; height:8px; border-radius:50%; margin-top:4px; flex:0 0 auto; background:{{ ev.color }}"></span>
+            <span style="font-size:13px; line-height:1.45; color:var(--ink-200)">{{ ev.msg }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex; justify-content:space-between; padding:10px 16px; border-top:1px solid rgba(233,236,242,.08); font-family:var(--font-mono); font-size:11px; color:var(--ink-500)">
+        <span>self-healing: enabled</span><span>policy engine: 214 active</span><span>queue: 0 pending approvals</span>
+      </div>
+    </div>
+  </header>
+
+  <section id="platform" style="max-width:1240px; margin:0 auto; padding:72px 40px">
+    <div style="max-width:640px; margin-bottom:44px">
+      <div style="font-family:var(--font-display); font-weight:800; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--brand); margin-bottom:12px">Platform</div>
+      <h2 style="margin:0 0 14px; font-family:var(--font-display); font-weight:800; font-size:36px; line-height:1.15; color:#fff">The complete infrastructure lifecycle, one control plane</h2>
+      <p style="margin:0; font-size:16px; line-height:1.6; color:var(--ink-300)">From first discovery scan to autonomous remediation — every module shares one dependency graph, one policy engine, and one audit trail.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px">
+      <sc-for list="{{ modules }}" as="m" hint-placeholder-count="8">
+        <div style="background:var(--ink-900); border:1px solid rgba(233,236,242,.09); border-radius:12px; padding:22px; display:flex; flex-direction:column; gap:12px; transition:transform .2s cubic-bezier(.2,0,0,1), border-color .2s" style-hover="transform:translateY(-3px); border-color:rgba(241,125,119,.4)">
+          <span style="width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; background:rgba(225,27,34,.12); color:var(--red-300)">{{ m.icon }}</span>
+          <div style="font-family:var(--font-display); font-weight:700; font-size:16px; color:#fff">{{ m.name }}</div>
+          <div style="font-size:13px; line-height:1.5; color:var(--ink-400)">{{ m.desc }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="demos" style="background:var(--ink-900); border-top:1px solid rgba(233,236,242,.07); border-bottom:1px solid rgba(233,236,242,.07)">
+    <div style="max-width:1240px; margin:0 auto; padding:72px 40px">
+      <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; row-gap:20px; margin-bottom:32px; flex-wrap:wrap">
+        <div style="max-width:560px; flex:1 1 420px; min-width:320px">
+          <div style="font-family:var(--font-display); font-weight:800; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--brand); margin-bottom:12px">See it run</div>
+          <h2 style="margin:0; font-family:var(--font-display); font-weight:800; font-size:36px; line-height:1.15; color:#fff">Real operations, not slideware</h2>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap">
+          <sc-for list="{{ tabs }}" as="tab" hint-placeholder-count="4">
+            <button onClick="{{ tab.onClick }}" style="font-family:var(--font-display); font-weight:700; font-size:14px; padding:9px 18px; border-radius:999px; cursor:pointer; border:1px solid {{ tab.border }}; background:{{ tab.bg }}; color:{{ tab.color }}; transition:all .2s cubic-bezier(.2,0,0,1)">{{ tab.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <sc-if value="{{ isHeal }}" hint-placeholder-val="{{ true }}">
+        <div style="display:grid; grid-template-columns:1fr 1.3fr; gap:20px; animation:inf-slidein .3s cubic-bezier(.2,0,0,1)">
+          <div style="background:var(--ink-950); border:1px solid rgba(233,236,242,.09); border-radius:12px; padding:24px">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px">
+              <x-import component-from-global-scope="Ds2daynewsDesignSystem_0b44f3.Badge" tone="breaking" hint-size="60px,18px">P1</x-import>
+              <span style="font-family:var(--font-mono); font-size:13px; color:var(--ink-300)">INC0048122</span>
+            </div>
+            <div style="font-family:var(--font-display); font-weight:700; font-size:19px; color:#fff; margin-bottom:8px">SQL Server service stopped on SQL-PRD-14</div>
+            <div style="font-size:14px; line-height:1.55; color:var(--ink-400); margin-bottom:20px">MSSQLSERVER terminated unexpectedly · payment settlement cluster · Mumbai region · 14 databases offline until runbook RB-1108 restores service.</div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px">
+              <div style="background:rgba(233,236,242,.05); border-radius:10px; padding:12px"><div style="font-family:var(--font-mono); font-size:20px; color:var(--success)">3m 12s</div><div style="font-size:11px; color:var(--ink-500)">detection → recovery</div></div>
+              <div style="background:rgba(233,236,242,.05); border-radius:10px; padding:12px"><div style="font-family:var(--font-mono); font-size:20px; color:#fff">0</div><div style="font-size:11px; color:var(--ink-500)">humans paged</div></div>
+            </div>
+            <a href="Demo Video - Self-Healing.dc.html" style="display:inline-flex; align-items:center; gap:8px; margin-top:18px; font-family:var(--font-display); font-weight:700; font-size:14px">▶ Watch the full demo film →</a>
+          </div>
+          <div style="background:var(--ink-950); border:1px solid rgba(233,236,242,.09); border-radius:12px; padding:24px; display:flex; flex-direction:column; gap:0">
+            <sc-for list="{{ healSteps }}" as="s" hint-placeholder-count="5">
+              <div style="display:flex; gap:16px">
+                <div style="display:flex; flex-direction:column; align-items:center; width:22px">
+                  <span style="position:relative; width:14px; height:14px; border-radius:50%; flex:0 0 auto; background:{{ s.dotBg }}; border:2px solid {{ s.dotBorder }}">
+                    <sc-if value="{{ s.active }}" hint-placeholder-val="{{ false }}"><span style="position:absolute; inset:-2px; border-radius:50%; background:var(--brand); animation:inf-ping 1.4s ease-out infinite"></span></sc-if>
+                  </span>
+                  <sc-if value="{{ s.line }}" hint-placeholder-val="{{ true }}"><span style="width:2px; flex:1; min-height:26px; background:rgba(233,236,242,.12)"></span></sc-if>
+                </div>
+                <div style="padding-bottom:18px">
+                  <div style="display:flex; align-items:baseline; gap:10px"><span style="font-family:var(--font-display); font-weight:700; font-size:14.5px; color:{{ s.titleColor }}">{{ s.title }}</span><span style="font-family:var(--font-mono); font-size:11px; color:var(--ink-500)">{{ s.time }}</span></div>
+                  <div style="font-size:13px; line-height:1.5; color:var(--ink-400)">{{ s.detail }}</div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isPatch }}" hint-placeholder-val="{{ false }}">
+        <div style="background:var(--ink-950); border:1px solid rgba(233,236,242,.09); border-radius:12px; padding:28px; animation:inf-slidein .3s cubic-bezier(.2,0,0,1)">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:22px; flex-wrap:wrap; gap:12px">
+            <div><div style="font-family:var(--font-display); font-weight:700; font-size:19px; color:#fff">March security wave · 1,240 servers</div><div style="font-size:13px; color:var(--ink-400)">Window 02:00–06:00 IST · CHG0042917 · topology-aware: AG secondaries first, cluster passive first · rollback armed</div></div>
+            <x-import component-from-global-scope="Ds2daynewsDesignSystem_0b44f3.Badge" tone="success" dc-props="{{ nowrapBadge }}" hint-size="80px,18px">On schedule</x-import>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:14px">
+            <sc-for list="{{ patchWaves }}" as="w" hint-placeholder-count="5">
+              <div style="display:grid; grid-template-columns:210px 1fr 120px 90px; gap:16px; align-items:center">
+                <div><div style="font-family:var(--font-display); font-weight:600; font-size:14px; color:var(--ink-100)">{{ w.name }}</div><div style="font-family:var(--font-mono); font-size:11px; color:var(--ink-500)">{{ w.hosts }}</div></div>
+                <div style="height:10px; border-radius:999px; background:rgba(233,236,242,.08); overflow:hidden"><div style="height:100%; border-radius:999px; width:{{ w.pct }}; background:{{ w.barColor }}; transition:width .6s cubic-bezier(.2,0,0,1)"></div></div>
+                <div style="font-family:var(--font-mono); font-size:12px; color:{{ w.statusColor }}">{{ w.status }}</div>
+                <div style="font-family:var(--font-mono); font-size:12px; color:var(--ink-400); text-align:right">{{ w.pct }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:flex; gap:28px; margin-top:24px; padding-top:18px; border-top:1px solid rgba(233,236,242,.08); font-family:var(--font-mono); font-size:12px; color:var(--ink-400)">
+            <span>pre-checks: <span style="color:var(--success)">1,240 pass</span></span><span>failed hosts: <span style="color:var(--success)">0</span></span><span>auto-validation: <span style="color:var(--success)">enabled</span></span><span>est. completion: 04:12 IST</span>
+            <a href="Demo Video - Patch Orchestration.dc.html" style="font-family:var(--font-display); font-weight:700; font-size:13px">▶ Watch the demo film →</a>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isMigrate }}" hint-placeholder-val="{{ false }}">
+        <div style="display:grid; grid-template-columns:1fr; gap:20px; animation:inf-slidein .3s cubic-bezier(.2,0,0,1)">
+          <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:12px">
+            <sc-for list="{{ migStages }}" as="st" hint-placeholder-count="5">
+              <div style="background:var(--ink-950); border:1px solid rgba(233,236,242,.09); border-radius:12px; padding:18px; position:relative">
+                <div style="font-family:var(--font-mono); font-size:24px; font-weight:600; color:{{ st.color }}">{{ st.count }}</div>
+                <div style="font-family:var(--font-display); font-weight:700; font-size:14px; color:var(--ink-100); margin-top:4px">{{ st.name }}</div>
+                <div style="font-size:12px; color:var(--ink-500)">{{ st.sub }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="background:var(--ink-950); border:1px solid rgba(233,236,242,.09); border-radius:12px; padding:24px">
+            <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:16px; gap:16px; flex-wrap:wrap">
+              <span style="font-family:var(--font-display); font-weight:700; font-size:16px; color:#fff">Active cutovers this week</span>
+              <a href="Demo Video - SQL Migration.dc.html" style="font-family:var(--font-display); font-weight:700; font-size:13px; white-space:nowrap">▶ Watch the demo film →</a>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:12px">
+              <sc-for list="{{ migrations }}" as="mg" hint-placeholder-count="4">
+                <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr 110px; gap:16px; align-items:center; padding:12px 14px; border-radius:10px; background:rgba(233,236,242,.04)">
+                  <div style="font-family:var(--font-display); font-weight:600; font-size:14px; color:var(--ink-100)">{{ mg.name }}</div>
+                  <div style="font-family:var(--font-mono); font-size:12px; color:var(--ink-400)">{{ mg.path }}</div>
+                  <div style="height:8px; border-radius:999px; background:rgba(233,236,242,.08); overflow:hidden"><div style="height:100%; width:{{ mg.pct }}; background:var(--gold-500)"></div></div>
+                  <div style="font-family:var(--font-mono); font-size:12px; color:{{ mg.color }}; text-align:right">{{ mg.status }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isExec }}" hint-placeholder-val="{{ false }}">
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px; animation:inf-slidein .3s cubic-bezier(.2,0,0,1)">
+          <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4">
+            <div style="background:var(--ink-950); border:1px solid rgba(233,236,242,.09); border-radius:12px; padding:20px">
+              <div style="font-size:12px; color:var(--ink-500); margin-bottom:8px">{{ k.label }}</div>
+              <div style="font-family:var(--font-mono); font-size:28px; font-weight:600; color:{{ k.color }}">{{ k.value }}</div>
+              <div style="font-family:var(--font-mono); font-size:11.5px; color:{{ k.deltaColor }}; margin-top:6px">{{ k.delta }}</div>
+            </div>
+          </sc-for>
+          <div style="grid-column:span 3; background:var(--ink-950); border:1px solid rgba(233,236,242,.09); border-radius:12px; padding:24px">
+            <div style="display:flex; justify-content:space-between; margin-bottom:20px"><div style="font-family:var(--font-display); font-weight:700; font-size:15px; color:#fff">Automated executions per month</div><div style="font-family:var(--font-mono); font-size:12px; color:var(--ink-500)">trailing 12 months</div></div>
+            <div style="display:flex; align-items:flex-end; gap:10px; height:150px">
+              <sc-for list="{{ bars }}" as="b" hint-placeholder-count="12">
+                <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:8px; height:100%; justify-content:flex-end">
+                  <div style="width:100%; border-radius:6px 6px 2px 2px; height:{{ b.h }}; background:{{ b.color }}; transform-origin:bottom; animation:inf-grow .6s cubic-bezier(.2,0,0,1)"></div>
+                  <span style="font-family:var(--font-mono); font-size:10px; color:var(--ink-500)">{{ b.m }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="background:var(--ink-950); border:1px solid rgba(233,236,242,.09); border-radius:12px; padding:24px; display:flex; flex-direction:column; gap:14px">
+            <div style="font-family:var(--font-display); font-weight:700; font-size:15px; color:#fff">Risk posture</div>
+            <div style="position:relative; width:120px; height:120px; margin:0 auto; border-radius:50%; background:conic-gradient(var(--success) 0 87%, rgba(233,236,242,.1) 87% 100%)">
+              <div style="position:absolute; inset:12px; border-radius:50%; background:var(--ink-950); display:flex; flex-direction:column; align-items:center; justify-content:center">
+                <span style="font-family:var(--font-mono); font-size:24px; font-weight:600; color:#fff">87</span><span style="font-size:10px; color:var(--ink-500)">health score</span>
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:8px; font-size:12.5px">
+              <div style="display:flex; justify-content:space-between"><span style="color:var(--ink-400)">Patch compliance</span><span style="font-family:var(--font-mono); color:var(--success)">99.1%</span></div>
+              <div style="display:flex; justify-content:space-between"><span style="color:var(--ink-400)">Config drift</span><span style="font-family:var(--font-mono); color:var(--gold-500)">142 nodes</span></div>
+              <div style="display:flex; justify-content:space-between"><span style="color:var(--ink-400)">EOL exposure</span><span style="font-family:var(--font-mono); color:var(--ink-200)">3 systems</span></div>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <section id="films" style="max-width:1240px; margin:0 auto; padding:72px 40px">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:40px; flex-wrap:wrap">
+      <div style="max-width:640px">
+        <div style="font-family:var(--font-display); font-weight:800; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--brand); margin-bottom:12px">Watch it work</div>
+        <h2 style="margin:0 0 14px; font-family:var(--font-display); font-weight:800; font-size:36px; line-height:1.15; color:#fff">Fourteen operations, filmed end to end — SQL Server, PostgreSQL and Oracle</h2>
+        <p style="margin:0; font-size:16px; line-height:1.6; color:var(--ink-300)">Real workflows on realistic estates — no slideware. Each film runs about a minute.</p>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:14px">
+      <sc-for list="{{ films }}" as="fl" hint-placeholder-count="6">
+        <a href="{{ fl.href }}" style="display:flex; flex-direction:column; gap:10px; background:var(--ink-900); border:1px solid rgba(233,236,242,.09); border-radius:12px; padding:22px; color:inherit; transition:transform .2s cubic-bezier(.2,0,0,1), border-color .2s" style-hover="transform:translateY(-3px); border-color:rgba(241,125,119,.4)">
+          <div style="display:flex; justify-content:space-between; align-items:center">
+            <span style="font-family:var(--font-display); font-weight:800; font-size:10px; letter-spacing:.08em; color:#fff; background:var(--brand); padding:3px 9px; border-radius:5px">FILM {{ fl.n }}</span>
+            <span style="font-family:var(--font-mono); font-size:11px; color:var(--ink-500)">{{ fl.dur }}</span>
+          </div>
+          <div style="font-family:var(--font-display); font-weight:700; font-size:17px; color:#fff">{{ fl.title }}</div>
+          <div style="font-size:13px; line-height:1.5; color:var(--ink-400); flex:1">{{ fl.desc }}</div>
+          <span style="font-family:var(--font-display); font-weight:700; font-size:13px; color:var(--red-300)">Watch the film →</span>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="coverage" style="background:var(--ink-900); border-top:1px solid rgba(233,236,242,.07); border-bottom:1px solid rgba(233,236,242,.07)"><div style="max-width:1240px; margin:0 auto; padding:72px 40px">
+    <div style="max-width:640px; margin-bottom:40px">
+      <div style="font-family:var(--font-display); font-weight:800; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--brand); margin-bottom:12px">Coverage</div>
+      <h2 style="margin:0 0 14px; font-family:var(--font-display); font-weight:800; font-size:36px; line-height:1.15; color:#fff">If it runs in your estate, we automate it</h2>
+      <p style="margin:0; font-size:16px; line-height:1.6; color:var(--ink-300)">One agentless platform across every database engine, operating system, middleware tier and cloud you operate.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:14px">
+      <sc-for list="{{ coverage }}" as="grp" hint-placeholder-count="8">
+        <div style="background:var(--ink-900); border:1px solid rgba(233,236,242,.09); border-radius:12px; padding:20px 22px">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:14px">
+            <span style="width:8px; height:8px; border-radius:50%; background:{{ grp.color }}"></span>
+            <span style="font-family:var(--font-display); font-weight:800; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-300)">{{ grp.name }}</span>
+            <span style="font-family:var(--font-mono); font-size:11px; color:var(--ink-500)">{{ grp.count }}</span>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:8px">
+            <sc-for list="{{ grp.items }}" as="it" hint-placeholder-count="6">
+              <span style="font-family:var(--font-display); font-weight:600; font-size:12.5px; padding:5px 12px; border-radius:999px; background:rgba(233,236,242,.06); border:1px solid rgba(233,236,242,.09); color:var(--ink-200)">{{ it }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div></section>
+
+  <section id="roi" style="max-width:1240px; margin:0 auto; padding:72px 40px">
+    <div style="display:grid; grid-template-columns:.9fr 1.1fr; gap:48px; align-items:start">
+      <div>
+        <div style="font-family:var(--font-display); font-weight:800; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--brand); margin-bottom:12px">ROI</div>
+        <h2 style="margin:0 0 14px; font-family:var(--font-display); font-weight:800; font-size:36px; line-height:1.15; color:#fff">What automation is worth on your estate</h2>
+        <p style="margin:0 0 18px; font-size:16px; line-height:1.6; color:var(--ink-300)">Move the sliders to your numbers. The model assumes 87% of patch effort and 71% of incident toil is automated — the averages across our customer base.</p>
+        <p style="margin:0; font-size:13px; line-height:1.6; color:var(--ink-500)">Estimates only — a proof of concept measures the real number on your servers in two weeks.</p>
+      </div>
+      <div style="background:var(--ink-900); border:1px solid rgba(233,236,242,.09); border-radius:12px; padding:28px; display:flex; flex-direction:column; gap:18px">
+        <sc-for list="{{ roiInputs }}" as="ri" hint-placeholder-count="4">
+          <div style="display:grid; grid-template-columns:190px 1fr 90px; gap:14px; align-items:center">
+            <span style="font-family:var(--font-display); font-weight:600; font-size:13.5px; color:var(--ink-200)">{{ ri.label }}</span>
+            <input type="range" min="{{ ri.min }}" max="{{ ri.max }}" step="{{ ri.step }}" value="{{ ri.value }}" onChange="{{ ri.onChange }}" style="width:100%; accent-color:#E11B22">
+            <span style="font-family:var(--font-mono); font-size:13px; color:#fff; text-align:right">{{ ri.display }}</span>
+          </div>
+        </sc-for>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; padding-top:18px; border-top:1px solid rgba(233,236,242,.08)">
+          <div style="background:rgba(233,236,242,.04); border-radius:10px; padding:16px 14px">
+            <div style="font-family:var(--font-mono); font-size:24px; color:var(--gold-500)">{{ roiHours }}</div>
+            <div style="font-size:11.5px; color:var(--ink-500); margin-top:4px">ops hours saved / year</div>
+          </div>
+          <div style="background:rgba(233,236,242,.04); border-radius:10px; padding:16px 14px">
+            <div style="font-family:var(--font-mono); font-size:24px; color:var(--success)">{{ roiDollars }}</div>
+            <div style="font-size:11.5px; color:var(--ink-500); margin-top:4px">cost avoided / year</div>
+          </div>
+          <div style="background:rgba(233,236,242,.04); border-radius:10px; padding:16px 14px">
+            <div style="font-family:var(--font-mono); font-size:24px; color:#fff">{{ roiFtes }}</div>
+            <div style="font-size:11.5px; color:var(--ink-500); margin-top:4px">FTEs freed for engineering</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="integrations" style="background:var(--ink-900); border-top:1px solid rgba(233,236,242,.07); border-bottom:1px solid rgba(233,236,242,.07)">
+    <div style="max-width:1240px; margin:0 auto; padding:72px 40px">
+      <div style="max-width:640px; margin-bottom:40px">
+        <div style="font-family:var(--font-display); font-weight:800; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--brand); margin-bottom:12px">Integrations</div>
+        <h2 style="margin:0; font-family:var(--font-display); font-weight:800; font-size:36px; line-height:1.15; color:#fff">Plugs into the tools you already run</h2>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(6,1fr); gap:12px">
+        <sc-for list="{{ integrations }}" as="ig" hint-placeholder-count="18">
+          <div style="background:var(--ink-950); border:1px solid rgba(233,236,242,.09); border-radius:12px; padding:18px 14px; display:flex; flex-direction:column; align-items:center; gap:10px; transition:transform .2s cubic-bezier(.2,0,0,1), border-color .2s" style-hover="transform:translateY(-3px); border-color:rgba(241,125,119,.4)">
+            <span style="width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:800; font-size:15px; background:{{ ig.bg }}; color:{{ ig.fg }}">{{ ig.mono }}</span>
+            <span style="font-family:var(--font-display); font-weight:600; font-size:12.5px; color:var(--ink-200); text-align:center">{{ ig.name }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="customers" style="max-width:1240px; margin:0 auto; padding:72px 40px">
+    <div style="max-width:640px; margin-bottom:40px">
+      <div style="font-family:var(--font-display); font-weight:800; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--brand); margin-bottom:12px">Customers</div>
+      <h2 style="margin:0; font-family:var(--font-display); font-weight:800; font-size:36px; line-height:1.15; color:#fff">Proven in regulated, always-on environments</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:16px">
+      <div style="background:var(--ink-900); border:1px solid rgba(233,236,242,.09); border-radius:12px; padding:24px">
+        <div style="font-family:var(--font-mono); font-size:32px; font-weight:600; color:var(--gold-500)">92%</div>
+        <div style="font-family:var(--font-display); font-weight:700; font-size:15px; color:#fff; margin:6px 0 4px">of patch windows fully automated</div>
+        <div style="font-size:13px; color:var(--ink-400)">Fortune 100 bank · 18,000 servers across 4 regions</div>
+      </div>
+      <div style="background:var(--ink-900); border:1px solid rgba(233,236,242,.09); border-radius:12px; padding:24px">
+        <div style="font-family:var(--font-mono); font-size:32px; font-weight:600; color:var(--gold-500)">11 weeks</div>
+        <div style="font-family:var(--font-display); font-weight:700; font-size:15px; color:#fff; margin:6px 0 4px">to migrate 400 Oracle databases to PostgreSQL</div>
+        <div style="font-size:13px; color:var(--ink-400)">Global insurer · zero unplanned downtime during cutover</div>
+      </div>
+      <div style="background:var(--ink-900); border:1px solid rgba(233,236,242,.09); border-radius:12px; padding:24px">
+        <div style="font-family:var(--font-mono); font-size:32px; font-weight:600; color:var(--gold-500)">$4.2M</div>
+        <div style="font-family:var(--font-display); font-weight:700; font-size:15px; color:#fff; margin:6px 0 4px">annual operational cost reduction</div>
+        <div style="font-size:13px; color:var(--ink-400)">Tier-1 telecom · incident volume down 71% year over year</div>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:14px">
+      <div style="background:var(--ink-900); border:1px solid rgba(233,236,242,.09); border-radius:12px; padding:26px">
+        <p style="margin:0 0 18px; font-size:16px; line-height:1.6; color:var(--ink-200)">"We stopped writing patch plans. INFRsre discovers the estate, sequences the waves around our dependency graph, and files the change records itself. Our DBAs do engineering now, not maintenance windows."</p>
+        <div style="display:flex; align-items:center; gap:12px">
+          <span style="width:40px; height:40px; border-radius:50%; background:rgba(225,27,34,.15); color:var(--red-300); display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:800; font-size:14px">RK</span>
+          <div><div style="font-family:var(--font-display); font-weight:700; font-size:14px; color:#fff">Rachel Koenig</div><div style="font-size:12px; color:var(--ink-500)">VP Infrastructure, Meridian Financial Group</div></div>
+        </div>
+      </div>
+      <div style="background:var(--ink-900); border:1px solid rgba(233,236,242,.09); border-radius:12px; padding:26px">
+        <p style="margin:0 0 18px; font-size:16px; line-height:1.6; color:var(--ink-200)">"The self-healing engine resolved 8,400 incidents last quarter before a human saw them. Our MTTR chart looks like a cliff. Audit loved that every action has a signed trail."</p>
+        <div style="display:flex; align-items:center; gap:12px">
+          <span style="width:40px; height:40px; border-radius:50%; background:rgba(232,160,32,.15); color:var(--gold-500); display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:800; font-size:14px">AD</span>
+          <div><div style="font-family:var(--font-display); font-weight:700; font-size:14px; color:#fff">Arun Devarajan</div><div style="font-size:12px; color:var(--ink-500)">Head of SRE, Northgate Health Systems</div></div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:36px; align-items:center">
+      <span style="font-family:var(--font-display); font-weight:800; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-500); margin-right:8px">Industries</span>
+      <sc-for list="{{ industries }}" as="ind" hint-placeholder-count="10">
+        <span style="font-family:var(--font-display); font-weight:600; font-size:13px; padding:6px 14px; border-radius:999px; border:1px solid rgba(233,236,242,.12); color:var(--ink-300)">{{ ind }}</span>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="compare" style="background:var(--ink-900); border-top:1px solid rgba(233,236,242,.07)">
+    <div style="max-width:1240px; margin:0 auto; padding:72px 40px">
+      <div style="max-width:640px; margin-bottom:40px">
+        <div style="font-family:var(--font-display); font-weight:800; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--brand); margin-bottom:12px">Why INFRsre</div>
+        <h2 style="margin:0; font-family:var(--font-display); font-weight:800; font-size:36px; line-height:1.15; color:#fff">Against what you're running today</h2>
+      </div>
+      <div style="background:var(--ink-950); border:1px solid rgba(233,236,242,.09); border-radius:12px; overflow:hidden">
+        <div style="display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:0; padding:14px 24px; border-bottom:1px solid rgba(233,236,242,.1); background:rgba(233,236,242,.03)">
+          <span style="font-family:var(--font-display); font-weight:800; font-size:10.5px; letter-spacing:.08em; color:var(--ink-500)">CAPABILITY</span>
+          <span style="font-family:var(--font-display); font-weight:800; font-size:10.5px; letter-spacing:.08em; color:var(--ink-400); text-align:center">SCRIPTS + ANSIBLE</span>
+          <span style="font-family:var(--font-display); font-weight:800; font-size:10.5px; letter-spacing:.08em; color:var(--ink-400); text-align:center">LEGACY SUITES</span>
+          <span style="font-family:var(--font-display); font-weight:800; font-size:10.5px; letter-spacing:.08em; color:var(--red-300); text-align:center">INFRSRE</span>
+        </div>
+        <sc-for list="{{ compareRows }}" as="cr" hint-placeholder-count="7">
+          <div style="display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:0; padding:13px 24px; border-bottom:1px solid rgba(233,236,242,.06); align-items:center">
+            <span style="font-family:var(--font-display); font-weight:600; font-size:14px; color:var(--ink-100)">{{ cr.cap }}</span>
+            <span style="font-family:var(--font-mono); font-size:12px; color:{{ cr.aColor }}; text-align:center">{{ cr.a }}</span>
+            <span style="font-family:var(--font-mono); font-size:12px; color:{{ cr.bColor }}; text-align:center">{{ cr.b }}</span>
+            <span style="font-family:var(--font-mono); font-size:12px; color:var(--success); text-align:center">{{ cr.c }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <p style="margin:16px 0 0; font-size:12.5px; color:var(--ink-500)">Comparison reflects typical deployments; your incumbent may differ. We'll map it honestly in a demo.</p>
+    </div>
+  </section>
+
+  <section id="cta" style="background:linear-gradient(180deg, var(--ink-900), var(--ink-950)); border-top:1px solid rgba(233,236,242,.07)">
+    <div style="max-width:840px; margin:0 auto; padding:88px 40px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:22px">
+      <h2 style="margin:0; font-family:var(--font-display); font-weight:800; font-size:42px; line-height:1.1; color:#fff; text-wrap:balance">Run a proof of concept on your own estate</h2>
+      <p style="margin:0; font-size:16px; line-height:1.6; color:var(--ink-300); max-width:52ch">Two weeks. Your servers, your change process, your compliance rules. We'll automate one patch wave end to end — or it's free.</p>
+      <div style="display:flex; gap:14px">
+        <x-import component-from-global-scope="Ds2daynewsDesignSystem_0b44f3.Button" size="lg" hint-size="150px,48px">Book demo</x-import>
+        <x-import component-from-global-scope="Ds2daynewsDesignSystem_0b44f3.Button" size="lg" variant="secondary" hint-size="190px,48px">Talk to an architect</x-import>
+      </div>
+      <div style="display:flex; gap:28px; margin-top:10px; padding-top:18px; border-top:1px solid rgba(233,236,242,.1); font-family:var(--font-mono); font-size:12px; color:var(--ink-400); flex-wrap:wrap; justify-content:center">
+        <span>pricing: platform fee + per-node subscription</span>
+        <span>typical enterprise: from $250K / year</span>
+        <span>proof of concept: free</span>
+      </div>
+    </div>
+  </section>
+
+  <footer style="border-top:1px solid rgba(233,236,242,.08); background:var(--ink-950)">
+    <div style="max-width:1240px; margin:0 auto; padding:56px 40px 40px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px">
+      <div>
+        <div style="font-family:var(--font-display); font-weight:800; font-size:20px; color:#fff; margin-bottom:10px">INFR<span style="color:var(--brand)">sre</span></div>
+        <p style="margin:0; font-size:13px; line-height:1.6; color:var(--ink-500); max-width:34ch">Autonomous infrastructure operations. Helping enterprises automate everything across infrastructure with AI.</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px">
+        <span style="font-family:var(--font-display); font-weight:800; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-400)">Platform</span>
+        <a href="#platform" style="font-size:13px; color:var(--ink-300)">Modules</a>
+        <a href="#demos" style="font-size:13px; color:var(--ink-300)">Product demos</a>
+        <a href="#coverage" style="font-size:13px; color:var(--ink-300)">Technology coverage</a>
+        <a href="#integrations" style="font-size:13px; color:var(--ink-300)">Integrations</a>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px">
+        <span style="font-family:var(--font-display); font-weight:800; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-400)">Company</span>
+        <a href="#customers" style="font-size:13px; color:var(--ink-300)">Customers</a>
+        <a href="#cta" style="font-size:13px; color:var(--ink-300)">Contact sales</a>
+        <a href="#cta" style="font-size:13px; color:var(--ink-300)">Careers</a>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px">
+        <span style="font-family:var(--font-display); font-weight:800; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-400)">Trust</span>
+        <span style="font-size:13px; color:var(--ink-300)">SOC 2 Type II</span>
+        <span style="font-size:13px; color:var(--ink-300)">ISO 27001</span>
+        <span style="font-size:13px; color:var(--ink-300)">FedRAMP in process</span>
+      </div>
+    </div>
+    <div style="max-width:1240px; margin:0 auto; padding:0 40px 32px; font-size:12px; color:var(--ink-600)">© 2026 INFRsre, Inc. All rights reserved.</div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;liveFeed&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;showTicker&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hero&quot;}}">
+class Component extends DCLogic {
+  state = { tab: 'heal', feed: [], servers: 5000, waves: 12, incidents: 400, rate: 85 };
+  POOL = [
+    { color: 'var(--danger)', msg: 'SQL-PRD-14 · MSSQLSERVER service stopped — heartbeat lost, confirmed twice' },
+    { color: 'var(--info)', msg: 'INC0048122 created in ServiceNow — priority P1, assigned to autonomous ops' },
+    { color: 'var(--gold-500)', msg: 'Runbook RB-1108 invoked · policy check passed · starting SQL Server service' },
+    { color: 'var(--success)', msg: 'Service running · 14/14 databases online · INC0048122 closed · MTTR 3m 12s' },
+    { color: 'var(--info)', msg: 'CHG0042917 · wave 3/5 started — 340 AG secondaries, canary pre-checks green' },
+    { color: 'var(--success)', msg: 'MIG-887 · Oracle → PostgreSQL cutover complete · 0 rows drifted in validation' },
+    { color: 'var(--gold-500)', msg: 'Drift detected on 12 IIS nodes · remediation queued for next window' },
+    { color: 'var(--success)', msg: 'Compliance scan finished · 12,412 nodes · 99.1% pass · report filed to GRC' },
+    { color: 'var(--info)', msg: 'K8s-EU-2 · predictive model forecasts disk pressure in 6h · expansion scheduled' },
+    { color: 'var(--success)', msg: 'ServiceNow CHG0048112 auto-closed with evidence bundle attached' }
+  ];
+  componentDidMount() {
+    this.idx = 4;
+    this.setState({ feed: this.POOL.slice(0, 4).map((e, i) => ({ ...e, t: (48 - i * 14) + 's ago' })) });
+    this.timer = setInterval(() => {
+      if (this.props.liveFeed === false) return;
+      const ev = { ...this.POOL[this.idx % this.POOL.length], t: 'now' };
+      this.idx++;
+      this.setState(s => {
+        const aged = s.feed.map((e, i) => ({ ...e, t: e.t === 'now' ? '3s ago' : (i * 14 + 14) + 's ago' }));
+        return { feed: [ev, ...aged].slice(0, 5) };
+      });
+    }, 2600);
+  }
+  componentWillUnmount() { clearInterval(this.timer); }
+  icon(d) {
+    return React.createElement('svg', { width: 20, height: 20, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' },
+      d.map((p, i) => React.createElement('path', { key: i, d: p })));
+  }
+  roiVals() {
+    const { servers, waves, incidents, rate } = this.state;
+    const set = k => e => this.setState({ [k]: Number(e.target.value) });
+    const patchHours = servers * 25 / 60 * waves;
+    const incidentHours = incidents * 12 * 45 / 60;
+    const saved = patchHours * 0.87 + incidentHours * 0.71;
+    const fmt = n => n >= 1e6 ? (n / 1e6).toFixed(1) + 'M' : Math.round(n).toLocaleString('en-US');
+    return {
+      roiInputs: [
+        { label: 'Servers under management', min: 100, max: 50000, step: 100, value: servers, display: servers.toLocaleString('en-US'), onChange: set('servers') },
+        { label: 'Patch waves per year', min: 4, max: 52, step: 1, value: waves, display: String(waves), onChange: set('waves') },
+        { label: 'Incidents per month', min: 50, max: 5000, step: 50, value: incidents, display: incidents.toLocaleString('en-US'), onChange: set('incidents') },
+        { label: 'Avg ops cost per hour', min: 40, max: 250, step: 5, value: rate, display: '$' + rate, onChange: set('rate') }
+      ],
+      roiHours: fmt(saved),
+      roiDollars: '$' + fmt(saved * rate),
+      roiFtes: (saved / 1800).toFixed(1)
+    };
+  }
+  renderVals() {
+    const tab = this.state.tab;
+    const setTab = t => () => this.setState({ tab: t });
+    const mkTab = (id, label) => ({
+      label, onClick: setTab(id),
+      bg: tab === id ? 'var(--brand)' : 'transparent',
+      color: tab === id ? '#fff' : 'var(--ink-300)',
+      border: tab === id ? 'var(--brand)' : 'rgba(233,236,242,.15)'
+    });
+    const done = { dotBg: 'var(--success)', dotBorder: 'var(--success)', titleColor: 'var(--ink-100)', active: false };
+    return {
+      showTicker: this.props.showTicker ?? true,
+      nowrapBadge: { style: { whiteSpace: 'nowrap' } },
+      ...this.roiVals(),
+      compareRows: [
+        { cap: 'Dependency-aware orchestration', a: 'hand-coded', aColor: 'var(--gold-500)', b: 'partial', bColor: 'var(--gold-500)', c: 'built-in graph' },
+        { cap: 'Topology detection (AG / cluster)', a: '✗', aColor: 'var(--red-300)', b: 'per-module', bColor: 'var(--gold-500)', c: 'automatic' },
+        { cap: 'AI root cause & self-healing', a: '✗', aColor: 'var(--red-300)', b: 'add-on, rules', bColor: 'var(--gold-500)', c: 'core platform' },
+        { cap: 'Signed audit trail & evidence', a: 'logs, if kept', aColor: 'var(--red-300)', b: 'partial', bColor: 'var(--gold-500)', c: 'every action' },
+        { cap: 'ServiceNow CMDB & change sync', a: 'custom glue', aColor: 'var(--gold-500)', b: 'connector', bColor: 'var(--gold-500)', c: 'native, two-way' },
+        { cap: 'Time to first automated wave', a: 'months of dev', aColor: 'var(--red-300)', b: '6–12 months', bColor: 'var(--red-300)', c: '2 weeks' },
+        { cap: 'Cost of ownership', a: 'hidden (people)', aColor: 'var(--gold-500)', b: 'high + services', bColor: 'var(--red-300)', c: 'subscription' }
+      ],
+      films: [
+        { n: '1', dur: '36s', title: 'Incident self-healing', desc: 'A stopped SQL Server service: incident auto-created, runbook restores it, incident closed — no human paged.', href: 'Demo Video - Self-Healing.dc.html' },
+        { n: '2', dur: '60s', title: 'Patch orchestration', desc: 'One CR patches six SQL Servers — topology-aware: AG secondaries first, cluster passive node first, controlled failovers.', href: 'Demo Video - Patch Orchestration.dc.html' },
+        { n: '3', dur: '60s', title: 'Database migration', desc: 'SQL 2016 → 2022 Always On: backups, NORECOVERY restores, tail-log cutover, AG config across two data centers.', href: 'Demo Video - SQL Migration.dc.html' },
+        { n: '4', dur: '68s', title: 'SQL Server build', desc: 'Intake request to production: VM, drive layout, unattended install, policy hardening, health checks.', href: 'Demo Video - SQL Server Build.dc.html' },
+        { n: '5', dur: '60s', title: 'Infrastructure discovery', desc: 'Agentless scan finds 1,240 CIs, classifies them, builds the dependency graph, syncs ServiceNow CMDB.', href: 'Demo Video - Infrastructure Discovery.dc.html' },
+        { n: '6', dur: '59s', title: 'Compliance automation', desc: 'CIS and PCI scans, auto-remediation, signed evidence — per-platform compliance dashboard.', href: 'Demo Video - Compliance.dc.html' },
+        { n: '7', dur: '68s', title: 'PostgreSQL build', desc: 'Intake to production on RHEL 9: VM, xfs mount layout (/pgdata, /pgwal…), initdb, tuning, health checks.', href: 'Demo Video - PG Build.dc.html' },
+        { n: '8', dur: '60s', title: 'PostgreSQL patching', desc: 'Topology-aware minor updates: streaming replicas first, switchover, old primary — Patroni clusters too.', href: 'Demo Video - PG Patching.dc.html' },
+        { n: '9', dur: '60s', title: 'PostgreSQL upgrade', desc: 'PG 12 → 16: pg_basebackup, standby restores, WAL catch-up, promote, sync + async remote replication.', href: 'Demo Video - PG Upgrade.dc.html' },
+        { n: '10', dur: '36s', title: 'PostgreSQL auto-healing', desc: 'postgresql-16 service stops: incident auto-created, runbook restores it, incident closed — nobody paged.', href: 'Demo Video - PG Auto-Healing.dc.html' },
+        { n: '11', dur: '68s', title: 'Oracle build', desc: 'Intake to production on RHEL 9: /u01–/u05 layout, silent runInstaller, DBCA, RU + datapatch, RMAN, health checks.', href: 'Demo Video - Oracle Build.dc.html' },
+        { n: '12', dur: '60s', title: 'Oracle patching', desc: 'Quarterly RU, topology-aware: Data Guard standbys first then switchover; RAC rolling — one instance at a time.', href: 'Demo Video - Oracle Patching.dc.html' },
+        { n: '13', dur: '60s', title: 'Oracle upgrade', desc: '12c → 19c: RMAN restores, redo catch-up, open new primary, Data Guard SYNC pair + ASYNC remote standby.', href: 'Demo Video - Oracle Upgrade.dc.html' },
+        { n: '14', dur: '36s', title: 'Oracle auto-healing', desc: 'Oracle instance goes down: incident auto-created, runbook restarts it, 6/6 PDBs verified, incident closed.', href: 'Demo Video - Oracle Auto-Healing.dc.html' },
+        { n: '15', dur: '59s', title: 'Verdictone — compliance that fixes itself', desc: 'Brand film: findings become one-tap fixes — agent plan, code diff, blast radius, posture score, audit date moving earlier.', href: 'Demo Video - Verdictone.dc.html' }
+      ],
+      tickerItems: [
+        'CHG0042917 wave complete — 340 servers patched, 0 failed',
+        'INC0048122 auto-resolved in 3m 12s (SQL Server service restored, SQL-PRD-14)',
+        'SQLAG-11 cutover complete — SQL 2016 → 2022 Always On, zero data loss',
+        'Compliance scan: 12,412 nodes, 99.1% pass',
+        'Self-healing runbook RB-1108 executed — no human paged'
+      ],
+      feed: this.state.feed,
+      tabs: [mkTab('heal', 'Incident self-healing'), mkTab('patch', 'Patch orchestration'), mkTab('migrate', 'Migration factory'), mkTab('exec', 'Executive dashboard')],
+      isHeal: tab === 'heal', isPatch: tab === 'patch', isMigrate: tab === 'migrate', isExec: tab === 'exec',
+      healSteps: [
+        { ...done, title: 'Detected', time: '02:41:07', detail: 'Service heartbeat lost on MSSQLSERVER — confirmed twice before users feel it.', line: true },
+        { ...done, title: 'Incident created', time: '02:41:31', detail: 'INC0048122 auto-created in ServiceNow — priority P1, assigned to INFRsre autonomous ops.', line: true },
+        { ...done, title: 'Runbook invoked', time: '02:42:02', detail: 'RB-1108 validates state, checks event log and disk, then starts the SQL Server service. Policy engine: no approval required.', line: true },
+        { ...done, title: 'Databases verified', time: '02:43:31', detail: '14/14 databases online — connections restored, health checks pass.', line: true },
+        { dotBg: 'var(--ink-950)', dotBorder: 'var(--brand)', titleColor: '#fff', active: true, line: false, title: 'Incident closed', time: '02:44:19', detail: 'INC0048122 updated to Closed with resolution notes and full audit trail.' }
+      ],
+      patchWaves: [
+        { name: 'Wave 1 · Canary', hosts: '24 hosts · dev', pct: '100%', barColor: 'var(--success)', status: 'complete', statusColor: 'var(--success)' },
+        { name: 'Wave 2 · Non-prod', hosts: '412 hosts', pct: '100%', barColor: 'var(--success)', status: 'complete', statusColor: 'var(--success)' },
+        { name: 'Wave 3 · AG secondaries', hosts: '340 SQL Servers', pct: '68%', barColor: 'var(--brand)', status: 'running', statusColor: 'var(--red-300)' },
+        { name: 'Wave 4 · Failover → AG primaries', hosts: '338 SQL Servers', pct: '0%', barColor: 'var(--ink-600)', status: 'queued 03:30', statusColor: 'var(--ink-400)' },
+        { name: 'Wave 5 · Cluster passive → active', hosts: '126 nodes', pct: '0%', barColor: 'var(--ink-600)', status: 'queued 04:15', statusColor: 'var(--ink-400)' }
+      ],
+      migStages: [
+        { name: 'Assess', sub: 'databases profiled', count: '412', color: 'var(--ink-200)' },
+        { name: 'Plan', sub: 'wave plans generated', count: '388', color: 'var(--ink-200)' },
+        { name: 'Rehearse', sub: 'dry runs passed', count: '214', color: 'var(--gold-500)' },
+        { name: 'Cutover', sub: 'in flight this week', count: '31', color: 'var(--brand)' },
+        { name: 'Validated', sub: 'complete, zero drift', count: '163', color: 'var(--success)' }
+      ],
+      migrations: [
+        { name: 'Payment core (SQLAG-11)', path: 'SQL 2016 → 2022 Always On', pct: '82%', status: 'cutover', color: 'var(--gold-500)' },
+        { name: 'Claims core (batch 7)', path: 'Oracle 19c → PostgreSQL 16', pct: '100%', status: 'validated', color: 'var(--success)' },
+        { name: 'Policy admin archive', path: 'DB2 → Snowflake', pct: '54%', status: 'replicating', color: 'var(--ink-300)' },
+        { name: 'Session store', path: 'self-managed Redis → managed', pct: '100%', status: 'validated', color: 'var(--success)' }
+      ],
+      kpis: [
+        { label: 'Automation coverage', value: '87%', color: '#fff', delta: '▲ 12 pts YoY', deltaColor: 'var(--success)' },
+        { label: 'Mean time to recovery', value: '3.2m', color: '#fff', delta: '▼ 64% YoY', deltaColor: 'var(--success)' },
+        { label: 'Patch compliance', value: '99.1%', color: '#fff', delta: '▲ 4.3 pts YoY', deltaColor: 'var(--success)' },
+        { label: 'Ops cost avoided', value: '$4.2M', color: 'var(--gold-500)', delta: 'trailing 12 months', deltaColor: 'var(--ink-500)' }
+      ],
+      bars: ['Sep,42','Oct,48','Nov,45','Dec,58','Jan,64','Feb,61','Mar,72','Apr,78','May,74','Jun,85','Jul,92','Aug,100'].map((s, i) => {
+        const [m, h] = s.split(',');
+        return { m, h: h + '%', color: i === 11 ? 'var(--brand)' : 'rgba(241,125,119,.35)' };
+      }),
+      modules: [
+        { icon: this.icon(['M12 2a10 10 0 1 0 10 10', 'M12 6a6 6 0 1 0 6 6', 'M12 12l7-7']), name: 'Infrastructure Discovery', desc: 'Agentless scans build a live inventory and dependency graph of everything you run.' },
+        { icon: this.icon(['M12 2l8 4.5v9L12 20l-8-4.5v-9z', 'M12 11L4 6.5', 'M12 11l8-4.5', 'M12 11v9']), name: 'Patch Orchestration', desc: 'Dependency-aware waves, canaries, auto-validation and armed rollback — hands off.' },
+        { icon: this.icon(['M3 12h4l2-7 4 14 2-7h6']), name: 'Self-Healing', desc: 'Detect, diagnose and remediate incidents with policy-governed runbooks.' },
+        { icon: this.icon(['M4 7h12', 'M13 4l3 3-3 3', 'M20 17H8', 'M11 14l-3 3 3 3']), name: 'Migration Factory', desc: 'Assess, rehearse and cut over databases and platforms at fleet scale.' },
+        { icon: this.icon(['M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z', 'M9 12l2 2 4-4']), name: 'Compliance Automation', desc: 'Continuous scans against CIS, PCI and your own policies — with filed evidence.' },
+        { icon: this.icon(['M12 3v3', 'M12 18v3', 'M5.6 5.6l2.1 2.1', 'M16.3 16.3l2.1 2.1', 'M3 12h3', 'M18 12h3', 'M5.6 18.4l2.1-2.1', 'M16.3 7.7l2.1-2.1']), name: 'AI Copilot', desc: 'Ask questions of your estate; generate runbooks and change plans in plain language.' },
+        { icon: this.icon(['M6 3v6a3 3 0 0 0 3 3h6a3 3 0 0 1 3 3v6', 'M6 3a2 2 0 1 0 0 .01', 'M18 21a2 2 0 1 0 0-.01']), name: 'Workflow Engine', desc: 'Visual builder with approval gates, CAB automation and full audit trails.' },
+        { icon: this.icon(['M3 21h18', 'M6 21V10', 'M11 21V4', 'M16 21v-8', 'M21 21V7']), name: 'Executive Dashboard', desc: 'Risk, compliance and automation ROI — board-ready, always current.' }
+      ],
+      coverage: [
+        { name: 'Databases', count: '17 engines', color: 'var(--cat-business)', items: ['SQL Server', 'Oracle', 'PostgreSQL', 'MySQL', 'MariaDB', 'MongoDB', 'Redis', 'Cassandra', 'Couchbase', 'ElasticSearch', 'OpenSearch', 'Neo4j', 'Cosmos DB', 'Snowflake', 'DB2', 'SAP HANA', 'Sybase'] },
+        { name: 'Operating systems', count: '9 platforms', color: 'var(--cat-jobs)', items: ['Windows', 'Linux', 'RHEL', 'Ubuntu', 'CentOS', 'SUSE', 'AIX', 'Solaris', 'Unix'] },
+        { name: 'Middleware & containers', count: '18 platforms', color: 'var(--cat-tech)', items: ['IIS', 'Apache', 'Nginx', 'Tomcat', 'JBoss', 'WildFly', 'WebLogic', 'WebSphere', 'Kafka', 'RabbitMQ', 'ActiveMQ', 'MQ Series', 'Docker', 'Kubernetes', 'OpenShift', 'VMware', 'Hyper-V'] },
+        { name: 'Cloud', count: '5 providers', color: 'var(--cat-weather)', items: ['Azure', 'AWS', 'Google Cloud', 'Oracle Cloud', 'Alibaba Cloud'] },
+        { name: 'Infrastructure as code', count: '5 tools', color: 'var(--cat-education)', items: ['Terraform', 'OpenTofu', 'Bicep', 'CloudFormation', 'Pulumi'] },
+        { name: 'Automation', count: '7 tools', color: 'var(--cat-sports)', items: ['Ansible', 'PowerShell', 'Python', 'Bash', 'Chef', 'Puppet', 'Salt'] },
+        { name: 'Monitoring', count: '9 tools', color: 'var(--cat-astrology)', items: ['Dynatrace', 'Datadog', 'SolarWinds', 'Prometheus', 'Grafana', 'SCOM', 'Splunk', 'ELK', 'Zabbix'] },
+        { name: 'ITSM & DevOps', count: '8 tools', color: 'var(--cat-cinema)', items: ['ServiceNow', 'Jira', 'FreshService', 'ManageEngine', 'Azure DevOps', 'GitHub', 'GitLab', 'Jenkins'] }
+      ],
+      integrations: [
+        ['ServiceNow', 'SN'], ['Ansible', 'A'], ['Terraform', 'T'], ['PowerShell', 'PS'], ['Azure', 'Az'], ['AWS', 'AW'],
+        ['Google Cloud', 'GC'], ['GitHub', 'GH'], ['GitLab', 'GL'], ['Jenkins', 'J'], ['Dynatrace', 'Dy'], ['Datadog', 'DD'],
+        ['Prometheus', 'P'], ['Grafana', 'G'], ['VMware', 'VM'], ['Active Directory', 'AD'], ['CyberArk', 'CA'], ['HashiCorp Vault', 'HV']
+      ].map(([name, mono], i) => ({
+        name, mono,
+        bg: i % 3 === 0 ? 'rgba(225,27,34,.14)' : i % 3 === 1 ? 'rgba(232,160,32,.14)' : 'rgba(36,119,201,.16)',
+        fg: i % 3 === 0 ? 'var(--red-300)' : i % 3 === 1 ? 'var(--gold-500)' : '#7FB3E3'
+      })),
+      industries: ['Banking', 'Insurance', 'Healthcare', 'Retail', 'Manufacturing', 'Telecommunications', 'Government', 'Energy', 'Education', 'Technology']
+    };
+  }
+}
+</script>
+</body>
+</html>
