@@ -28,17 +28,10 @@ export default function DemosPage() {
         secondary={{ label: 'Explore platform', href: '/platform' }}
       />
 
-      <Section tone="panel">
-        <SectionHead
-          eyebrow="Interactive Theatre"
-          title="Interactive Workflow Simulator"
-          lede="Select a tab to switch scenarios, play/pause execution, or inspect the phase progression and evidence logs."
-        />
-        <div style={{ marginTop: 'var(--space-8)' }}>
-          <Island name="DemoTheatre">
-            <DemoTheatre />
-          </Island>
-        </div>
+      <Section tone="panel" tightTop>
+        <Island name="DemoTheatre">
+          <DemoTheatre />
+        </Island>
       </Section>
 
       <Section size="sm">
